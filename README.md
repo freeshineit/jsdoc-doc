@@ -43,7 +43,7 @@
 ## 使用后的事例
 
 
-![docs](https://github.com/freeshineit/jsdoc-doc/images/1.png)
+![docs](https://github.com/freeshineit/jsdoc-doc/blob/main/images/1.png)
 
 
 ## 使用说明
