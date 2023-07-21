@@ -101,7 +101,18 @@ class Events {
   /**
    * @constructor
    */
-  constructor() {}
+  constructor() {
+    /**
+     * this is function
+     * @function
+     *
+     * @param {string} str gg param
+     * @returns {void}
+     * @example
+     * event.testFn("click", () => {})
+     */
+    this.testFn = (str) => {};
+  }
 
   /**
    * @description events add listener
