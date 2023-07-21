@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Events.html">Events</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Events.html#emit">emit</a></li><li data-type='method' style='display: none;'><a href="Events.html#off">off</a></li><li data-type='method' style='display: none;'><a href="Events.html#on">on</a></li><li data-type='method' style='display: none;'><a href="Events.html#once">once</a></li></ul></li><li></li><li><a href="Logger.html">Logger</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Logger.html#.d">d</a></li><li data-type='method' style='display: none;'><a href="Logger.html#.e">e</a></li><li data-type='method' style='display: none;'><a href="Logger.html#.i">i</a></li><li data-type='method' style='display: none;'><a href="Logger.html#.v">v</a></li><li data-type='method' style='display: none;'><a href="Logger.html#.w">w</a></li></ul></li><li><a href="TransparentColor.html">TransparentColor</a><ul class='methods'><li data-type='method' style='display: none;'><a href="TransparentColor.html#rgb">rgb</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="config.html">config</a></li></ul><h3>Interfaces</h3><ul><li><a href="Color.html">Color</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Color.html#rgb">rgb</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#EventsListener">EventsListener</a></li><li><a href="global.html#LoggerLevel">LoggerLevel</a></li><li><a href="global.html#LoggerOption">LoggerOption</a></li><li><a href="global.html#MYSQL_HOST">MYSQL_HOST</a></li><li><a href="global.html#MYSQL_PORT">MYSQL_PORT</a></li><li><a href="global.html#Person">Person</a></li><li><a href="global.html#RequestCallback">RequestCallback</a></li><li><a href="global.html#testCB">testCB</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+    <section class="package">
+        <h3> </h3>		
+    </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section class="readme usertext">
+        <article><h1>JSDoc</h1>
+<h2>开发中遇到的痛点</h2>
+<ul>
+<li>
+<p>缺乏文档： 没有适当的注释和文档会导致代码缺乏清晰的描述和说明。这使得其他开发者在理解和使用代码时可能会遇到困难，特别是对于复杂的函数或类。</p>
+</li>
+<li>
+<p>代码可读性下降： 缺少注释和文档会导致代码的可读性下降。代码不是自解释的，开发者需要花费更多时间来理解代码的功能和用途。</p>
+</li>
+<li>
+<p>维护困难： 在缺乏文档的情况下，对代码进行维护和修改可能会更加困难。开发者可能需要阅读更多的代码，以弄清楚每个函数和类的用途和参数。</p>
+</li>
+<li>
+<p>协作问题： 缺少注释和文档可能会导致团队协作问题。不同的开发者可能会对代码功能和用法有不同的理解，增加了交流和理解代码的难度。</p>
+</li>
+<li>
+<p>代码重构困难： 在重构代码时，缺乏文档会增加风险，因为开发者无法确切地知道对代码的更改如何影响其他部分。</p>
+</li>
+<li>
+<p>错误难以发现： 缺乏类型和参数的说明可能会导致开发者传递错误的参数或使用错误的函数，这些错误可能在编译时无法捕获，只有在运行时才会导致问题。</p>
+</li>
+<li>
+<p>代码补全不准确： 缺乏注释和类型信息可能会导致代码编辑器无法提供准确的代码补全和提示，降低了开发效率。</p>
+</li>
+</ul>
+<h2>痛点事例</h2>
+<ul>
+<li>
+<p>js</p>
+</li>
+<li>
+<p>react</p>
+</li>
+</ul>
+<h2>JSDoc好处</h2>
+<ul>
+<li>
+<p>自动化文档生成： <code>JSDoc</code> 允许你在代码中添加注释，并根据这些注释自动生成文档。这使得文档的创建过程更高效，减少手动维护文档的工作量。</p>
+</li>
+<li>
+<p>代码可读性： <code>JSDoc</code> 注释提供了清晰的描述和说明，使得代码更易于理解和阅读。开发者可以通过注释直接了解函数、类和变量的用途、参数、返回值等信息。</p>
+</li>
+<li>
+<p>团队合作： <code>JSDoc</code> 注释标准化了代码文档的格式，帮助团队成员更好地协同合作。代码文档的一致性使得团队成员之间更容易交流和理解彼此的代码。</p>
+</li>
+<li>
+<p>API 文档： 对于公共 API，<code>JSDoc</code> 可以为其他开发者提供详细的接口文档。这样，其他开发者在使用你的代码时，可以更好地了解如何正确使用它们。</p>
+</li>
+<li>
+<p>代码补全和提示： 常见的代码编辑器和 IDE 支持 J<code>SDoc</code>，可以根据注释提供更好的代码补全和提示功能，提高开发效率。</p>
+</li>
+<li>
+<p>类型检查： 通过在 <code>JSDoc</code> 注释中指定参数和返回值的类型，一些工具可以用于静态类型检查，发现潜在的类型错误和 bug。</p>
+</li>
+<li>
+<p>文档发布： 使用 <code>JSDoc</code> 生成的文档可以轻松地发布到网页上，供用户或其他开发者查阅。</p>
+</li>
+</ul>
+<p><code>JSDoc</code> 提供了一种有用的工具，可以改善代码质量，促进团队合作，提供清晰的文档，以及增强代码的可维护性。在项目中使用 <code>JSDoc</code> 注释可以是一个明智的选择，尤其是在大型项目或开发团队中。</p>
+<h2>使用后的事例</h2>
+<p><img src="./1.png" alt="docs"></p>
+<h2>使用说明</h2>
+<h3><code>@description</code></h3>
+<p><code>@description</code> 标记允许提供描述。描述可以包括 HTML 标记。如果启用了 <code>Markdown</code> 插件，它也可包括 <code>Markdown</code> 格式。</p>
+<pre class="prettyprint source lang-js"><code>/** @description 这是一个描述  `Markdown` */
+</code></pre>
+<h3><code>@param</code></h3>
+<p><code>@param</code> 标记提供函数参数的名称、类型和描述</p>
+<pre class="prettyprint source lang-js"><code>/**
+ * @param {string} str str是字符串类型
+ */ 
+function fn (str) {}
+</code></pre>
+<h3><code>@returns</code></h3>
+<p><code>@returns</code> 标记记录函数返回的值</p>
+<pre class="prettyprint source lang-js"><code>/**
+ * @returns {number}
+ */
+function sum(a, b) {
+  return a + b;
+}
+</code></pre>
+<h3><code>@type</code></h3>
+<p><code>@type</code> 标记允许您提供一个类型表达式，用于标识符号可能包含的值类型或函数返回的值类型。</p>
+<pre class="prettyprint source lang-js"><code>/** @type {HTMLElement} */
+const ele = document.getElementById(&quot;root&quot;)
+</code></pre>
+<h3><code>@typedef</code></h3>
+<p><code>@typedef</code> 标签在描述自定义类型，特别是如果你要反复引用它们的时候。</p>
+<pre class="prettyprint source lang-js"><code>/**
+ * logger level
+ * @typedef {'DEBUG' | 'VERBOSE' | 'INFO' | 'WARN' | 'ERROR'} LoggerLevel
+ */
+
+/**
+ * @typedef {Object} Person person 对象
+ * @property {string} name 姓名
+ * @property {number} age 年龄
+ */
+</code></pre>
+<h3><code>@property</code></h3>
+<p><code>@property</code> 标签是一种方便地记录类、命名空间或其他对象的静态属性列表的方法。</p>
+<pre class="prettyprint source lang-js"><code>/**
+ * @typedef {Object} Person person 对象
+ * @property {string} name 姓名
+ * @property {number} age 年龄
+ */
+/**
+ * @namespace
+ * @property {object}  defaults               - The default values for parties.
+ * @property {number}  defaults.players       - The default number of players.
+ * @property {string}  defaults.level         - The default level for the party.
+ * @property {object}  defaults.treasure      - The default treasure.
+ * @property {number}  defaults.treasure.gold - How much gold the party starts with.
+ */
+var config = {
+  defaults: {
+    players: 1,
+    level:   'beginner',
+    treasure: {
+      gold: 0
+    }
+  }
+};
+</code></pre>
+<h3><code>@callback</code></h3>
+<p><code>@callback</code> 标签提供回调函数（可传递给其他函数）的描述，包括回调的参数和返回值。可以包涵任何一个能提供给 <code>@method</code>标签。</p>
+<pre class="prettyprint source lang-js"><code>/**
+ * 定义一个回调函数的描述
+ * @callback RequestCallback
+ * @param {number} responseCode 响应code
+ * @param {string} responseMessage 响应message
+ *
+ * @returns {string}
+ */
+
+/**
+ * @param {RequestCallback} cb
+ */
+function testCallback(cb) {}
+</code></pre>
+<h3><code>@class</code></h3>
+<p><code>@class</code> 标记将函数标记为构造函数，这意味着要使用 <code>new</code> 关键字调用它以返回实例。</p>
+<h3><code>@classdesc</code></h3>
+<p><code>@classdesc</code> 标签用于为类提供一个描述，这样和构造函数的描述区分开来。</p>
+<pre class="prettyprint source lang-js"><code>/**
+ * @class A
+ * @classdesc A class
+ */ 
+class A {}
+
+/**
+ * @class B
+ * @classdesc B class.
+ */
+function B () {
+
+}
+</code></pre>
+<h3><code>@constructs</code></h3>
+<p><code>@constructs</code> 标签标明这个函数用来作为类的构造实例。</p>
+<pre class="prettyprint source lang-js"><code>class A {
+   /**
+   * @constructor
+   */
+  constructor() {}
+}
+</code></pre>
+<h3><code>@member</code></h3>
+<p><code>@member</code> 标记标识没有特殊类型的任意成员，例如“类”、“函数”或“常量”。成员可以选择具有类型和名称。</p>
+<pre class="prettyprint source lang-js"><code>/** @class */
+function Data() {
+  /** @member {Object} */
+  this.point = {};
+}
+</code></pre>
+<h3><code>@memberof</code></h3>
+<p><code>@memberof</code> 标签标明成员隶属于哪一个父级标识符。</p>
+<pre class="prettyprint source lang-js"><code>/** @namespace */
+var Tools = {};
+
+/** @memberof Tools */
+var hammer = function() {};
+Tools.hammer = hammer;
+</code></pre>
+<h3><code>@since</code></h3>
+<p><code>@since</code> 标记表示在特定版本中添加了类、方法或其他符号。</p>
+<pre class="prettyprint source lang-js"><code>
+class A {
+    /**
+     * 表示a方法是版本3.0.0及后面的版本才有
+     * @sine 3.0.0
+     */ 
+    a () {}
+}
+</code></pre>
+<h3><code>@static</code></h3>
+<p>@static 标记表示符号包含在父项中，可以在不实例化父项的情况下访问。</p>
+<h3><code>@override</code></h3>
+<p><code>@override</code> 标签指明一个标识符覆盖其父类同名的标识符。</p>
+<h3><code>@example</code></h3>
+<p><code>@example</code> 标签后面的文本将显示为突出显示的代码块。</p>
+<pre class="prettyprint source lang-js"><code>/**
+ * @example
+ * Logger.v(&quot;message&quot;)
+ */
+function v(mse) {}
+</code></pre>
+<h3><code>@public</code></h3>
+<p><code>@public</code> 标签标记标识符为公开的。</p>
+<h3><code>@protected</code></h3>
+<p><code>@protected</code> 标记将符号标记为受保护。通常，此标记表示符号仅在当前模块中可用或应仅使用。</p>
+<h3><code>@private</code></h3>
+<p><code>@private</code> 标记将符号标记为 private, 标记不被子成员继承。默认文档输出中不会显示私有成员。除非使用 <code>-p/--private</code> 命令行选项运行</p>
+<h3><code>@readonly</code></h3>
+<p><code>@readonly</code> 标记一个标识符为只读。</p>
+<h3><code>@throws</code></h3>
+<p><code>@throws</code> 标记记录函数可能引发的错误。可以在一个 JSDoc 注释中多次包含 <code>@throws</code> 标记。</p>
+<h3><code>@ignore</code></h3>
+<p><code>@ignore</code> 标签表示在代码中的注释不应该出现在文档中，注释会被直接忽略。这个标签优先于所有其他标签.</p>
+<h3><code>@interface</code></h3>
+<p>@interface 标签使一个标识符作为其他标识符的一个实现接口</p>
+<pre class="prettyprint source lang-js"><code>/**
+ * Interface for classes that represent a color.
+ *
+ * @interface
+ */
+function Color() {}
+</code></pre>
+<h3><code>@implements</code></h3>
+<p><code>@implements</code> 标签表示一个标识实现一个接口。</p>
+<pre class="prettyprint source lang-js"><code>/**
+ * Class representing a color with transparency information.
+ * @class
+ * @implements {Color}
+ */
+function TransparentColor() {}
+</code></pre>
+<h3><code>@enum</code></h3>
+<p><code>@enum</code> 标记记录了一组静态属性，这些属性的值都属于同一类型。</p>
+<pre class="prettyprint source lang-js"><code>/**
+ * Enum for tri-state values.
+ * @readonly
+ * @enum {number}
+ */
+var triState = {
+  /** The true value */
+  TRUE: 1,
+  FALSE: -1,
+  /** @type {boolean} */
+  MAYBE: true
+};
+</code></pre>
+<h3><code>@deprecated</code></h3>
+<p><code>@deprecated</code>标签指明一个标识在代码中已经被弃用</p>
+<pre class="prettyprint source lang-js"><code>/**
+ * @deprecated 下一个大版本将会移除
+ */ 
+function a () {}
+</code></pre>
+<h3><code>@async</code></h3>
+<p><code>@async</code> 标记表示函数是异步的，这意味着它是使用语法 <code>async function foo () {}</code> 声明的。</p>
+<h3><code>@function</code></h3>
+<p><code>@function</code> 标签标记为一个函数</p>
+<h3><code>@constant</code></h3>
+<p><code>@constant</code> 标记用于将文档标记为属于常量的符号。</p>
+<h3><code>@version</code></h3>
+<p><code>@version</code> 标签后面的文本将被用于表示该项的版本。</p>
+<h3><code>@global</code></h3>
+<p><code>@global</code> 标记指定一个符号应作为全局符号出现在文档中。</p>
+<h3><code>@tutorial</code></h3>
+<p><code>@tutorial</code> 标签插入一个指向向导教程的链接，作为文档的一部分。</p>
+<h3><code>@summary</code></h3>
+<p><code>@summary</code> 标签是完整描述的一个简写版本。它可以被添加到任何的 doclet。</p>
+<h3><code>@file</code></h3>
+<p><code>@file</code> 标签提供文件的说明。在文件开头的注释部分使用该标签。</p>
+<h3><code>@author</code></h3>
+<p><code>@author</code> 标签标识一个项目的作者</p>
+<h3><code>@copyright</code></h3>
+<p><code>@copyright</code> 标签是用来描述一个文件的版权信息。一般和 @file 标签结合使用。</p>
+<h3><code>@license</code></h3>
+<p><code>@license</code> 标记标识应用于代码任何部分的软件许可证。</p>
+<h2>内联标签</h2>
+<h3><code>{@link}</code></h3>
+<pre class="prettyprint source lang-js"><code>/**
+ * See MyClass and MyClass's foo property.
+ * Also, check out Google and
+ * GitHub.
+ */
+function myFunction() {}
+</code></pre>
+<h2>接入</h2>
+<ul>
+<li>安装依赖</li>
+</ul>
+<pre class="prettyprint source lang-bash"><code>yarn install jsdoc -D
+
+npx jsdoc -c jsdoc.json
+</code></pre>
+<ul>
+<li>配置文件 <code>jsdoc.json</code></li>
+</ul>
+<p>使用JSON格式的配置文件格式化JSDoc，使用-c选项，例如： <code>jsdoc -c ./json.json</code></p>
+<pre class="prettyprint source lang-js"><code>// 注意这是json 格式的code, 在这里使用js模版是为了写注释
+{
+    &quot;tags&quot;: {
+        // JSDoc允许您使用无法识别的标签
+        &quot;allowUnknownTags&quot;: true,
+        // 两个标准JSDoc标签和closure标签被启用
+        &quot;dictionaries&quot;: [&quot;jsdoc&quot;,&quot;closure&quot;]
+    },
+    &quot;source&quot;: {
+        // 包括的路径
+        &quot;include&quot;: [&quot;src&quot;],
+        // 不包括路径
+        &quot;exclude&quot;: [],
+        // 只有以.js和.jsdoc结尾的文件将会被处理
+        &quot;includePattern&quot;: &quot;.+\\.js(doc)?$&quot;,
+        // 任何文件以下划线开始或开始下划线的目录都将被忽略
+        &quot;excludePattern&quot;: &quot;(^|\\/|\\\\)_&quot;
+    },
+    // 插件加载
+    &quot;plugins&quot;: [&quot;plugins/markdown&quot;],
+    &quot;templates&quot;: {
+        // @link标签呈现在纯文本
+        &quot;cleverLinks&quot;: false,
+        &quot;monospaceLinks&quot;: false,
+        &quot;default&quot;: {
+
+        }
+    }
+}
+</code></pre>
+<h2>jsdoc 命令行参数</h2>
+<table><thead><tr><th>选项</th><th>描述</th></tr></thead><tbody><tr><td><code>-a &lt;value&gt;</code>, <code>--access &lt;value&gt;</code></td><td>只显示特定 access 方法属性的标识符： <code>private</code>, <code>protected</code>, <code>public</code>, or <code>undefined</code>, 或者 <code>all</code>（表示所有的访问级别）。默认情况下，显示除 <code>private</code> 标识符以外的所有标识符。</td></tr><tr><td><code>-c &lt;value&gt;</code>, <code>--configure &lt;value&gt;</code></td><td>JSDoc 配置文件的路径。默认为安装 JSDoc 目录下的 <code>conf.json</code> 或 <code>conf.json.EXAMPLE</code>。</td></tr><tr><td><code>-d &lt;value&gt;</code>, <code>--destination &lt;value&gt;</code></td><td>输出生成文档的文件夹路径。JSDoc 内置的 Haruki 模板，使用 console 将数据转储到控制台。默认为 <code>./out</code>。</td></tr><tr><td><code>--debug</code></td><td>打印日志信息，可以帮助调试 JSDoc 本身的问题。</td></tr><tr><td><code>-e &lt;value&gt;</code>, <code>--encoding &lt;value&gt;</code></td><td>当 JSDoc 阅读源代码时假定使用这个编码，默认为 <code>utf8</code>。</td></tr><tr><td><code>-h</code>, <code>--help</code></td><td>显示 JSDoc 的命令行选项的信息，然后退出。</td></tr><tr><td><code>--match &lt;value&gt;</code></td><td>只运行测试，其名称中包含 value。</td></tr><tr><td><code>--nocolor</code></td><td>当运行测试时，在控制台输出信息不要使用的颜色。在 Windows 中，这个选项是默认启用的。</td></tr><tr><td><code>-p</code>, <code>--private</code></td><td>将标记有<a href="/tags-private">@private 标签</a>的标识符也生成到文档中。默认情况下，不包括私有标识符。</td></tr><tr><td><code>-P</code>, <code>--package</code></td><td>包含项目名称，版本，和其他细节的 <code>package.json</code> 文件。默认为在源路径中找到的第一个 <code>package.json</code> 文件。</td></tr><tr><td><code>--pedantic</code></td><td>将错误视为致命错误，将警告视为错误。默认为 <code>false</code>。</td></tr><tr><td><code>-q &lt;value&gt;</code>, <code>--query &lt;value&gt;</code></td><td>一个查询字符串用来解析和存储到全局变量 <code>env.opts.query</code> 中。示例：foo=bar&amp;baz=true。</td></tr><tr><td><code>-r</code>, <code>--recurse</code></td><td>扫描源文件和导览时递归到子目录。</td></tr><tr><td><code>-R</code>, <code>--readme</code></td><td>用来包含到生成文档的 <code>README.md</code> 文件。默认为在源路径中找到的第一 <code>README.md</code> 文件。</td></tr><tr><td><code>-t &lt;value&gt;</code>, <code>--template &lt;value&gt;</code></td><td>用于生成输出文档的模板的路径。默认为 <code>templates/default</code>，JSDoc 内置的默认模板。</td></tr><tr><td><code>-T</code>, <code>--test</code></td><td>运行 JSDoc 的测试套件，并把结果打印到控制台。</td></tr><tr><td><code>-u &lt;value&gt;</code>, <code>--tutorials &lt;value&gt;</code></td><td>导览路径，JSDoc 要搜索的目录。如果省略，将不生成导览页。查看<a href="/about-tutorials">导览说明</a>，以了解更多信息。</td></tr><tr><td><code>-v</code>, <code>--version</code></td><td>显示 JSDoc 的版本号，然后退出。</td></tr><tr><td><code>--verbose</code></td><td>日志的详细信息到控制台 JSDoc 运行。默认为 <code>false</code>。</td></tr><tr><td><code>-X</code>, <code>--explain</code></td><td>以 JSON 格式转储所有的 doclet 到控制台，然后退出。</td></tr></tbody></table>
+<h2>模版</h2>
+<ul>
+<li><a href="https://github.com/clenemt/docdash">docdash</a></li>
+</ul>
+<h2>缺点</h2>
+<ul>
+<li>
+<p>维护负担： 编写和维护<code>JSDoc</code>注释需要额外的工作和时间，尤其是在大型代码库中。开发人员需要随着代码的变化及时更新注释，这在快速发展的项目中可能很难维护。</p>
+</li>
+<li>
+<p>代码重复： 有时，<code>JSDoc</code>注释中的信息可能已经在代码本身中表现出来。在这种情况下，添加冗余的注释可能会导致代码重复，可能是不必要的。</p>
+</li>
+<li>
+<p>不一致或过时的注释： 在较大的团队中，确保<code>JSDoc</code>注释的一致性可能是困难的。开发人员可能会忘记更新或添加注释，导致不一致或过时的信息。</p>
+</li>
+<li>
+<p>学习曲线： 对于不熟悉<code>JSDoc</code>语法和约定的开发人员，<code>JSDoc</code>有一定的学习曲线。采用<code>JSDoc</code>可能需要一些时间和努力，使新的团队成员或贡献者能够理解和遵循注释样式。</p>
+</li>
+<li>
+<p>潜在错误： 如果<code>JSDoc</code>注释包含错误信息或与代码更改不同步，可能导致误导性的文档，无法反映代码的实际行为。</p>
+</li>
+<li>
+<p>有限的类型检查： 尽管<code>JSDoc</code>注释可以为JavaScript函数和变量提供类型信息，但它们不像静态类型语言（如TypeScript）那样提供相同程度的类型安全和静态分析。</p>
+</li>
+<li>
+<p>过度使用或不相关的注释： 有时开发人员可能会觉得有必要对每个函数或变量添加<code>JSDoc</code>注释，即使代码本身已经很清晰。这可能会导致混乱，使注释变得不那么有价值。</p>
+</li>
+</ul>
+<p>尽管有这些潜在的缺点，<code>JSDoc</code>仍然是一种有价值的工具，用于记录JavaScript代码，特别是当谨慎使用并结合良好的实践时。适当维护和相关的<code>JSDoc</code>注释可以显著增强代码理解、协作和可维护性。</p>
+<p>如果有条件和能力的话，推荐使用typescript</p></article>
+    </section>
+
+
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Jul 22 2023 00:36:58 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

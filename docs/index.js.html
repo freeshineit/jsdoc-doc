@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>index.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Events.html">Events</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Events.html#emit">emit</a></li><li data-type='method' style='display: none;'><a href="Events.html#off">off</a></li><li data-type='method' style='display: none;'><a href="Events.html#on">on</a></li><li data-type='method' style='display: none;'><a href="Events.html#once">once</a></li></ul></li><li></li><li><a href="Logger.html">Logger</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Logger.html#.d">d</a></li><li data-type='method' style='display: none;'><a href="Logger.html#.e">e</a></li><li data-type='method' style='display: none;'><a href="Logger.html#.i">i</a></li><li data-type='method' style='display: none;'><a href="Logger.html#.v">v</a></li><li data-type='method' style='display: none;'><a href="Logger.html#.w">w</a></li></ul></li><li><a href="TransparentColor.html">TransparentColor</a><ul class='methods'><li data-type='method' style='display: none;'><a href="TransparentColor.html#rgb">rgb</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="config.html">config</a></li></ul><h3>Interfaces</h3><ul><li><a href="Color.html">Color</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Color.html#rgb">rgb</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#EventsListener">EventsListener</a></li><li><a href="global.html#LoggerLevel">LoggerLevel</a></li><li><a href="global.html#LoggerOption">LoggerOption</a></li><li><a href="global.html#MYSQL_HOST">MYSQL_HOST</a></li><li><a href="global.html#MYSQL_PORT">MYSQL_PORT</a></li><li><a href="global.html#Person">Person</a></li><li><a href="global.html#RequestCallback">RequestCallback</a></li><li><a href="global.html#testCB">testCB</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">index.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @class Logger
+ * @classdesc Logger class description
+ * @since 0.1.0
+ * @example
+ * Logger.v("this is console log")
+ *
+ * Logger.e("this is console error")
+ */
+class Logger {
+  /** @type {LoggerLevel} */
+  static LOGGER_LEVEL = "DEBUG";
+  /** @type {boolean} */
+  static HIDE_TAG = false;
+
+  /**
+   * @description Static method used to print debug logs
+   * @static
+   *
+   * @example
+   * Logger.d("error message")
+   *
+   * @param {...Array&lt;any>} args debug messages
+   * @returns {void}
+   */
+  static d(...args) {
+    console.debug(...args);
+  }
+
+  /**
+   * @description Static method used to print info logs
+   * @static
+   *
+   * @example
+   * Logger.i("info message")
+   *
+   * @param {...Array&lt;any>} args info messages
+   * @returns {void}
+   */
+  static i(...args) {
+    console.info(...args);
+  }
+
+  /**
+   * @description Static method used to print verbose logs
+   * @static
+   *
+   * @example
+   * Logger.v("verbose message")
+   *
+   * @param {...Array&lt;any>} args verbose messages
+   * @returns {void}
+   */
+  static v(...args) {
+    console.log(...args);
+  }
+
+  /**
+   * @description Static method used to print warn logs
+   * @static
+   *
+   * @example
+   * Logger.w("verbose message")
+   *
+   * @param {...Array&lt;any>} args warn messages
+   * @returns {void}
+   */
+  static w(...args) {
+    console.warn(...args);
+  }
+
+  /**
+   * @description Static method used to print error logs
+   * @static
+   *
+   * @example
+   * Logger.e("verbose message")
+   *
+   * @param {...Array&lt;any>} args error messages
+   * @returns {void}
+   */
+  static e(...args) {
+    console.error(...args);
+  }
+}
+
+/**
+ * @class Events
+ * @classdesc Events class description
+ * @since 0.1.0
+ * @example
+ *
+ * const event = new Event()
+ * event.on("type", () => {})
+ *
+ */
+class Events {
+  /** @type {Object&lt;string, Array&lt;EventsListener>>} */
+  listeners = {};
+
+  /**
+   * @constructor
+   */
+  constructor() {}
+
+  /**
+   * @description events add listener
+   * @public
+   *
+   * @param {string} type events type
+   * @param {EventsListener} fn events listener
+   * @returns {void}
+   *
+   * @example
+   * event.on("click", () => {})
+   */
+  on(type, fn) {
+    if (this.listeners[type]) {
+      this.listeners.push(fn);
+    } else {
+      this.listeners = [fn];
+    }
+  }
+
+  /**
+   * @description events remove listener
+   * @public
+   *
+   * @param {string} type events type
+   * @param {EventsListener=} fn events listener options
+   * @returns {void}
+   *
+   * @example
+   *
+   * event.off("click")
+   */
+  off(type, fn) {
+    if (this.listeners[type]) {
+      if (fn) {
+        const index = this.listeners[type].findIndex((item) => item === fn);
+        if (index > -1) {
+          this.listeners[type] = this.listeners[type].splice(index, 1);
+        }
+      } else {
+        this.listeners = [];
+      }
+    }
+  }
+
+  /**
+   * @deprecated events add once listener
+   * @param {string} type events type
+   * @param {EventsListener} fn
+   *
+   * @example
+   * const fn = () => { console.log("emit once") }
+   * event.once('click', fn)
+   */
+  once(type, fn) {
+    const cb = () => {
+      // 执行一次 然后移除
+      fn();
+      this.off(cb);
+    };
+    this.on(type, cb);
+  }
+
+  /**
+   * @description events emit listener
+   * @param {string} type events type
+   * @returns {void}
+   * @deprecated 下一个大版本将会移除
+   * @example
+   *
+   * event.emit('click')
+   */
+  emit(type) {
+    if (this.listeners[type]) {
+      this.listeners[type].forEach((fn) => {
+        fn();
+      });
+    }
+  }
+}
+
+// /**
+//  * See {@link MyClass} and [MyClass's foo property]{@link MyClass#foo}.
+//  * Also, check out {@link http://www.google.com|Google} and
+//  * {@link https://github.com GitHub}.
+//  */
+// function myFunction() {}
+
+export { Events };
+
+export default Logger;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Jul 22 2023 00:36:58 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>
