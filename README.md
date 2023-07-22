@@ -441,7 +441,27 @@ npx jsdoc -c jsdoc.json
 ## 模版
 
 - [docdash](https://github.com/clenemt/docdash)
+  
+- [minami](https://github.com/nijikokun/minami)
 
+## 部署
+
+生成的文件都是静态资源可以直接部署
+
+- http-server
+  
+  ```bash
+  cd docs
+  # http://localhost:8080
+  http-server -p 8080 .
+  ```
+- github 
+
+  ![github docs](https://github.com/freeshineit/jsdoc-doc/blob/main/images/github_docs.png)
+
+  ```bash
+  https://<github账号名>.github.io/<仓库名>/
+  ```
 ## 缺点
 
 - 维护负担： 编写和维护`JSDoc`注释需要额外的工作和时间，尤其是在大型代码库中。开发人员需要随着代码的变化及时更新注释，这在快速发展的项目中可能很难维护。
