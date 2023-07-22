@@ -459,7 +459,10 @@ npx jsdoc -c jsdoc.json
 
   ![github docs](https://github.com/freeshineit/jsdoc-doc/blob/main/images/github_docs.png)
 
+  ![github deploy](https://github.com/freeshineit/jsdoc-doc/blob/main/images/github_deploy.png)
+
   ```bash
+  # 访问
   https://<github账号名>.github.io/<仓库名>/
   ```
 ## 缺点
