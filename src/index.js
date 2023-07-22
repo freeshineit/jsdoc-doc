@@ -95,7 +95,10 @@ class Logger {
  *
  */
 class Events {
-  /** @type {Object<string, Array<EventsListener>>} */
+  /**
+   * @type {Object<string, Array<EventsListener>>}
+   * @member
+   */
   listeners = {};
 
   /**
