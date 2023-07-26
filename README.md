@@ -1,4 +1,4 @@
-# JSDoc 
+# [JSDoc](https://github.com/jsdoc/jsdoc) 
 
 ## 开发中遇到的痛点
 
@@ -426,7 +426,8 @@ npx jsdoc -c jsdoc.json
         "cleverLinks": false,
         "monospaceLinks": false,
         "default": {
-
+          // 移除源码文件
+          "outputSourceFiles": false  // 默认 true
         }
     }
 }
@@ -438,11 +439,25 @@ npx jsdoc -c jsdoc.json
 <table><thead><tr><th>选项</th><th>描述</th></tr></thead><tbody><tr><td><code>-a &lt;value&gt;</code>, <code>--access &lt;value&gt;</code></td><td>只显示特定 access 方法属性的标识符： <code>private</code>, <code>protected</code>, <code>public</code>, or <code>undefined</code>, 或者 <code>all</code>（表示所有的访问级别）。默认情况下，显示除 <code>private</code> 标识符以外的所有标识符。</td></tr><tr><td><code>-c &lt;value&gt;</code>, <code>--configure &lt;value&gt;</code></td><td>JSDoc 配置文件的路径。默认为安装 JSDoc 目录下的 <code>conf.json</code> 或 <code>conf.json.EXAMPLE</code>。</td></tr><tr><td><code>-d &lt;value&gt;</code>, <code>--destination &lt;value&gt;</code></td><td>输出生成文档的文件夹路径。JSDoc 内置的 Haruki 模板，使用 console 将数据转储到控制台。默认为 <code>./out</code>。</td></tr><tr><td><code>--debug</code></td><td>打印日志信息，可以帮助调试 JSDoc 本身的问题。</td></tr><tr><td><code>-e &lt;value&gt;</code>, <code>--encoding &lt;value&gt;</code></td><td>当 JSDoc 阅读源代码时假定使用这个编码，默认为 <code>utf8</code>。</td></tr><tr><td><code>-h</code>, <code>--help</code></td><td>显示 JSDoc 的命令行选项的信息，然后退出。</td></tr><tr><td><code>--match &lt;value&gt;</code></td><td>只运行测试，其名称中包含 value。</td></tr><tr><td><code>--nocolor</code></td><td>当运行测试时，在控制台输出信息不要使用的颜色。在 Windows 中，这个选项是默认启用的。</td></tr><tr><td><code>-p</code>, <code>--private</code></td><td>将标记有<a href="/tags-private">@private 标签</a>的标识符也生成到文档中。默认情况下，不包括私有标识符。</td></tr><tr><td><code>-P</code>, <code>--package</code></td><td>包含项目名称，版本，和其他细节的 <code>package.json</code> 文件。默认为在源路径中找到的第一个 <code>package.json</code> 文件。</td></tr><tr><td><code>--pedantic</code></td><td>将错误视为致命错误，将警告视为错误。默认为 <code>false</code>。</td></tr><tr><td><code>-q &lt;value&gt;</code>, <code>--query &lt;value&gt;</code></td><td>一个查询字符串用来解析和存储到全局变量 <code>env.opts.query</code> 中。示例：foo=bar&amp;baz=true。</td></tr><tr><td><code>-r</code>, <code>--recurse</code></td><td>扫描源文件和导览时递归到子目录。</td></tr><tr><td><code>-R</code>, <code>--readme</code></td><td>用来包含到生成文档的 <code>README.md</code> 文件。默认为在源路径中找到的第一 <code>README.md</code> 文件。</td></tr><tr><td><code>-t &lt;value&gt;</code>, <code>--template &lt;value&gt;</code></td><td>用于生成输出文档的模板的路径。默认为 <code>templates/default</code>，JSDoc 内置的默认模板。</td></tr><tr><td><code>-T</code>, <code>--test</code></td><td>运行 JSDoc 的测试套件，并把结果打印到控制台。</td></tr><tr><td><code>-u &lt;value&gt;</code>, <code>--tutorials &lt;value&gt;</code></td><td>导览路径，JSDoc 要搜索的目录。如果省略，将不生成导览页。查看<a href="/about-tutorials">导览说明</a>，以了解更多信息。</td></tr><tr><td><code>-v</code>, <code>--version</code></td><td>显示 JSDoc 的版本号，然后退出。</td></tr><tr><td><code>--verbose</code></td><td>日志的详细信息到控制台 JSDoc 运行。默认为 <code>false</code>。</td></tr><tr><td><code>-X</code>, <code>--explain</code></td><td>以 JSON 格式转储所有的 doclet 到控制台，然后退出。</td></tr></tbody></table>
 
 
-## 模版
+## [模版](https://jsdoc.app/about-configuring-default-template.html)
 
 - [docdash](https://github.com/clenemt/docdash)
   
 - [minami](https://github.com/nijikokun/minami)
+
+- [jaguarjs-jsdoc](https://github.com/davidshimjs/jaguarjs-jsdoc)
+
+- [DocStrap](https://github.com/docstrap/docstrap)
+  
+- [tui-jsdoc-template ](https://github.com/nhn/tui.jsdoc-template)
+
+- [better-docs](https://github.com/SoftwareBrothers/better-docs)
+  
+## [插件](https://jsdoc.app/about-plugins.html)
+
+- [plugins/shout]()
+
+- [plugins/markdown] 自带
 
 ## 部署
 
@@ -465,6 +480,83 @@ npx jsdoc -c jsdoc.json
   # 访问
   https://<github账号名>.github.io/<仓库名>/
   ```
+
+## 原理
+
+[jsdoc-ast](https://github.com/jsdoc/jsdoc/tree/main/packages/jsdoc-ast)
+
+
+```js
+/**
+ * @description 抽象语法树函数
+ * 
+ * @param {string} js string
+ * @param {boolean} 
+ * @return {Object} json 树
+ */
+function ast () {}
+```
+
+```js
+Node {
+  type: 'FunctionDeclaration',
+  start: 112,
+  end: 129,
+  loc: SourceLocation {
+    start: Position { line: 9, column: 0 },
+    end: Position { line: 9, column: 17 },
+    filename: undefined,
+    identifierName: undefined
+  },
+  range: [ 112, 129 ],
+  id: Node {
+    type: 'Identifier',
+    start: 121,
+    end: 124,
+    loc: SourceLocation {
+      start: [Position],
+      end: [Position],
+      filename: undefined,
+      identifierName: 'ast'
+    },
+    range: [ 121, 124 ],
+    name: 'ast'
+  },
+  generator: false,
+  async: false,
+  expression: false,
+  params: [],
+  body: Node {
+    type: 'BlockStatement',
+    start: 127,
+    end: 129,
+    loc: SourceLocation {
+      start: [Position],
+      end: [Position],
+      filename: undefined,
+      identifierName: undefined
+    },
+    range: [ 127, 129 ],
+    body: []
+  },
+  leadingComments: [
+    {
+      type: 'CommentBlock',
+      value: '*\n' +
+        ' * @description 抽象语法树函数\n' +
+        ' *\n' +
+        ' * @param {string} js string\n' +
+        ' * @param {boolean}\n' +
+        ' * @return {Object} json 树\n' +
+        ' ',
+      start: 1,
+      end: 111,
+      loc: [SourceLocation]
+    }
+  ]
+}
+```
+
 ## 缺点
 
 - 维护负担： 编写和维护`JSDoc`注释需要额外的工作和时间，尤其是在大型代码库中。开发人员需要随着代码的变化及时更新注释，这在快速发展的项目中可能很难维护。

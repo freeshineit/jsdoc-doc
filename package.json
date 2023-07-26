@@ -2,7 +2,8 @@
   "name": "jsdoc-doc",
   "version": "0.1.0",
   "scripts": {
-    "docs": "rimraf docs && jsdoc -c ./jsdoc.json -r README.md -d docs"
+    "docs": "rimraf docs && jsdoc -c ./jsdoc.json -r README.md -d docs",
+    "ast": "node ./test/ast.js"
   },
   "devDependencies": {
     "docdash": "^2.0.1",
