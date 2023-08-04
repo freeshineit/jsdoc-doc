@@ -20,7 +20,115 @@
 
 - js
 
+```js
+// 操作dom 
+const canvas = document.getElementById("canvas-id")
+const context = canvas.getContext("2d")
+// context.
+```
+
 - react
+
+```jsx
+import React, { useState } from 'react';
+const ListItem = ({ action, title, setClicked }) => {
+  return {
+    <li>
+      <button
+        onClick={() => {
+          setclicked(title);
+          action();
+        }}
+        className="my-button">
+        {title}
+      </button>
+    </li>
+  );
+};
+
+const List = ({ create, read, update, destroy }) => {
+  const [clicked, setClicked] = useState('');
+  return (
+    <div>
+      <hl>The last clicked button is {clicked}</hl>
+      <ul>
+        <ListItem title="Create" action={create} setClicked={setClicked} />
+        <ListItem title="Read" action={read} setClicked={setClicked} />
+        <ListItem title="Update" action={update} setClicked={setClicked} />
+        <ListItem title ="Destroy" action={destroy} setClicked={setClicked} />
+      </ul>
+    </div>
+  );
+};
+```
+
+如果不写注释或`PropTypes`, 
+
+- js
+
+```js
+// 操作dom 
+/** @type {HTMLCanvasElement} */
+const canvas = document.getElementById("canvas-id")
+/** @type {CanvasRenderingContext2D} */
+const context = canvas.getContext("2d")
+// context.
+```
+
+- react
+
+```jsx
+import React, { useState } from "react";
+
+/**
+ * @description 列表项
+ * @param {Object} props
+ * @param {Function} props.action 操作函数
+ * @param {string} props.title 标题内容
+ * @param {Function} props.setClicked
+ */
+export const ListItem = ({ action, title, setClicked }) => {
+  return (
+    <li>
+      <button
+        onClick={() => {
+          setClicked(title);
+          action();
+        }}
+        className="my-button"
+      >
+        {title}
+      </button>
+    </li>
+  );
+};
+
+/**
+ * @description 列表
+ * @param {Object} props List 组件props
+ * @param {Function} props.create 创建函数
+ * @param {Function} props.read 读函数
+ * @param {Function} props.update 更新函数
+ * @param {Function} props.destroy 销毁函数
+ * @returns
+ */
+const List = ({ create, read, update, destroy }) => {
+  const [clicked, setClicked] = useState("");
+  return (
+    <div>
+      <hl>The last clicked button is {clicked}</hl>
+      <ul>
+        <ListItem title="Create" action={create} setClicked={setClicked} />
+        <ListItem title="Read" action={read} setClicked={setClicked} />
+        <ListItem title="Update" action={update} setClicked={setClicked} />
+        <ListItem title="Destroy" action={destroy} setClicked={setClicked} />
+      </ul>
+    </div>
+  );
+};
+
+export default List;
+```
 
 ## JSDoc好处
 
