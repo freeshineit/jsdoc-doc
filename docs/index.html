@@ -62,7 +62,7 @@
 
 
     <section class="readme usertext">
-        <article><h1>JSDoc</h1>
+        <article><h1><a href="https://github.com/jsdoc/jsdoc">JSDoc</a></h1>
 <h2>开发中遇到的痛点</h2>
 <ul>
 <li>
@@ -89,13 +89,112 @@
 </ul>
 <h2>痛点事例</h2>
 <ul>
-<li>
-<p>js</p>
-</li>
-<li>
-<p>react</p>
-</li>
+<li>js</li>
 </ul>
+<pre class="prettyprint source lang-js"><code>// 操作dom 
+const canvas = document.getElementById(&quot;canvas-id&quot;)
+const context = canvas.getContext(&quot;2d&quot;)
+// context.
+</code></pre>
+<ul>
+<li>react</li>
+</ul>
+<pre class="prettyprint source lang-jsx"><code>import React, { useState } from 'react';
+const ListItem = ({ action, title, setClicked }) => {
+  return {
+    &lt;li>
+      &lt;button
+        onClick={() => {
+          setclicked(title);
+          action();
+        }}
+        className=&quot;my-button&quot;>
+        {title}
+      &lt;/button>
+    &lt;/li>
+  );
+};
+
+const List = ({ create, read, update, destroy }) => {
+  const [clicked, setClicked] = useState('');
+  return (
+    &lt;div>
+      &lt;hl>The last clicked button is {clicked}&lt;/hl>
+      &lt;ul>
+        &lt;ListItem title=&quot;Create&quot; action={create} setClicked={setClicked} />
+        &lt;ListItem title=&quot;Read&quot; action={read} setClicked={setClicked} />
+        &lt;ListItem title=&quot;Update&quot; action={update} setClicked={setClicked} />
+        &lt;ListItem title =&quot;Destroy&quot; action={destroy} setClicked={setClicked} />
+      &lt;/ul>
+    &lt;/div>
+  );
+};
+</code></pre>
+<p>如果不写注释或<code>PropTypes</code>,</p>
+<ul>
+<li>js</li>
+</ul>
+<pre class="prettyprint source lang-js"><code>// 操作dom 
+/** @type {HTMLCanvasElement} */
+const canvas = document.getElementById(&quot;canvas-id&quot;)
+/** @type {CanvasRenderingContext2D} */
+const context = canvas.getContext(&quot;2d&quot;)
+// context.
+</code></pre>
+<ul>
+<li>react</li>
+</ul>
+<pre class="prettyprint source lang-jsx"><code>import React, { useState } from &quot;react&quot;;
+
+/**
+ * @description 列表项
+ * @param {Object} props
+ * @param {Function} props.action 操作函数
+ * @param {string} props.title 标题内容
+ * @param {Function} props.setClicked
+ */
+export const ListItem = ({ action, title, setClicked }) => {
+  return (
+    &lt;li>
+      &lt;button
+        onClick={() => {
+          setClicked(title);
+          action();
+        }}
+        className=&quot;my-button&quot;
+      >
+        {title}
+      &lt;/button>
+    &lt;/li>
+  );
+};
+
+/**
+ * @description 列表
+ * @param {Object} props List 组件props
+ * @param {Function} props.create 创建函数
+ * @param {Function} props.read 读函数
+ * @param {Function} props.update 更新函数
+ * @param {Function} props.destroy 销毁函数
+ * @returns
+ */
+const List = ({ create, read, update, destroy }) => {
+  const [clicked, setClicked] = useState(&quot;&quot;);
+  return (
+    &lt;div>
+      &lt;hl>The last clicked button is {clicked}&lt;/hl>
+      &lt;ul>
+        &lt;ListItem title=&quot;Create&quot; action={create} setClicked={setClicked} />
+        &lt;ListItem title=&quot;Read&quot; action={read} setClicked={setClicked} />
+        &lt;ListItem title=&quot;Update&quot; action={update} setClicked={setClicked} />
+        &lt;ListItem title=&quot;Destroy&quot; action={destroy} setClicked={setClicked} />
+      &lt;/ul>
+    &lt;/div>
+  );
+};
+
+export default List;
+</code></pre>
 <h2>JSDoc好处</h2>
 <ul>
 <li>
@@ -390,20 +489,42 @@ npx jsdoc -c jsdoc.json
         &quot;cleverLinks&quot;: false,
         &quot;monospaceLinks&quot;: false,
         &quot;default&quot;: {
-
+          // 移除源码文件
+          &quot;outputSourceFiles&quot;: false  // 默认 true
         }
     }
 }
 </code></pre>
 <h2>jsdoc 命令行参数</h2>
 <table><thead><tr><th>选项</th><th>描述</th></tr></thead><tbody><tr><td><code>-a &lt;value&gt;</code>, <code>--access &lt;value&gt;</code></td><td>只显示特定 access 方法属性的标识符： <code>private</code>, <code>protected</code>, <code>public</code>, or <code>undefined</code>, 或者 <code>all</code>（表示所有的访问级别）。默认情况下，显示除 <code>private</code> 标识符以外的所有标识符。</td></tr><tr><td><code>-c &lt;value&gt;</code>, <code>--configure &lt;value&gt;</code></td><td>JSDoc 配置文件的路径。默认为安装 JSDoc 目录下的 <code>conf.json</code> 或 <code>conf.json.EXAMPLE</code>。</td></tr><tr><td><code>-d &lt;value&gt;</code>, <code>--destination &lt;value&gt;</code></td><td>输出生成文档的文件夹路径。JSDoc 内置的 Haruki 模板，使用 console 将数据转储到控制台。默认为 <code>./out</code>。</td></tr><tr><td><code>--debug</code></td><td>打印日志信息，可以帮助调试 JSDoc 本身的问题。</td></tr><tr><td><code>-e &lt;value&gt;</code>, <code>--encoding &lt;value&gt;</code></td><td>当 JSDoc 阅读源代码时假定使用这个编码，默认为 <code>utf8</code>。</td></tr><tr><td><code>-h</code>, <code>--help</code></td><td>显示 JSDoc 的命令行选项的信息，然后退出。</td></tr><tr><td><code>--match &lt;value&gt;</code></td><td>只运行测试，其名称中包含 value。</td></tr><tr><td><code>--nocolor</code></td><td>当运行测试时，在控制台输出信息不要使用的颜色。在 Windows 中，这个选项是默认启用的。</td></tr><tr><td><code>-p</code>, <code>--private</code></td><td>将标记有<a href="/tags-private">@private 标签</a>的标识符也生成到文档中。默认情况下，不包括私有标识符。</td></tr><tr><td><code>-P</code>, <code>--package</code></td><td>包含项目名称，版本，和其他细节的 <code>package.json</code> 文件。默认为在源路径中找到的第一个 <code>package.json</code> 文件。</td></tr><tr><td><code>--pedantic</code></td><td>将错误视为致命错误，将警告视为错误。默认为 <code>false</code>。</td></tr><tr><td><code>-q &lt;value&gt;</code>, <code>--query &lt;value&gt;</code></td><td>一个查询字符串用来解析和存储到全局变量 <code>env.opts.query</code> 中。示例：foo=bar&amp;baz=true。</td></tr><tr><td><code>-r</code>, <code>--recurse</code></td><td>扫描源文件和导览时递归到子目录。</td></tr><tr><td><code>-R</code>, <code>--readme</code></td><td>用来包含到生成文档的 <code>README.md</code> 文件。默认为在源路径中找到的第一 <code>README.md</code> 文件。</td></tr><tr><td><code>-t &lt;value&gt;</code>, <code>--template &lt;value&gt;</code></td><td>用于生成输出文档的模板的路径。默认为 <code>templates/default</code>，JSDoc 内置的默认模板。</td></tr><tr><td><code>-T</code>, <code>--test</code></td><td>运行 JSDoc 的测试套件，并把结果打印到控制台。</td></tr><tr><td><code>-u &lt;value&gt;</code>, <code>--tutorials &lt;value&gt;</code></td><td>导览路径，JSDoc 要搜索的目录。如果省略，将不生成导览页。查看<a href="/about-tutorials">导览说明</a>，以了解更多信息。</td></tr><tr><td><code>-v</code>, <code>--version</code></td><td>显示 JSDoc 的版本号，然后退出。</td></tr><tr><td><code>--verbose</code></td><td>日志的详细信息到控制台 JSDoc 运行。默认为 <code>false</code>。</td></tr><tr><td><code>-X</code>, <code>--explain</code></td><td>以 JSON 格式转储所有的 doclet 到控制台，然后退出。</td></tr></tbody></table>
-<h2>模版</h2>
+<h2><a href="https://jsdoc.app/about-configuring-default-template.html">模版</a></h2>
 <ul>
 <li>
 <p><a href="https://github.com/clenemt/docdash">docdash</a></p>
 </li>
 <li>
 <p><a href="https://github.com/nijikokun/minami">minami</a></p>
+</li>
+<li>
+<p><a href="https://github.com/davidshimjs/jaguarjs-jsdoc">jaguarjs-jsdoc</a></p>
+</li>
+<li>
+<p><a href="https://github.com/docstrap/docstrap">DocStrap</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nhn/tui.jsdoc-template">tui-jsdoc-template </a></p>
+</li>
+<li>
+<p><a href="https://github.com/SoftwareBrothers/better-docs">better-docs</a></p>
+</li>
+</ul>
+<h2><a href="https://jsdoc.app/about-plugins.html">插件</a></h2>
+<ul>
+<li>
+<p><a href="">plugins/shout</a></p>
+</li>
+<li>
+<p>[plugins/markdown] 自带</p>
 </li>
 </ul>
 <h2>部署</h2>
@@ -425,6 +546,75 @@ https://&lt;github账号名>.github.io/&lt;仓库名>/
 </code></pre>
 </li>
 </ul>
+<h2>原理</h2>
+<p><a href="https://github.com/jsdoc/jsdoc/tree/main/packages/jsdoc-ast">jsdoc-ast</a></p>
+<pre class="prettyprint source lang-js"><code>/**
+ * @description 抽象语法树函数
+ * 
+ * @param {string} js string
+ * @param {boolean} 
+ * @return {Object} json 树
+ */
+function ast () {}
+</code></pre>
+<pre class="prettyprint source lang-js"><code>Node {
+  type: 'FunctionDeclaration',
+  start: 112,
+  end: 129,
+  loc: SourceLocation {
+    start: Position { line: 9, column: 0 },
+    end: Position { line: 9, column: 17 },
+    filename: undefined,
+    identifierName: undefined
+  },
+  range: [ 112, 129 ],
+  id: Node {
+    type: 'Identifier',
+    start: 121,
+    end: 124,
+    loc: SourceLocation {
+      start: [Position],
+      end: [Position],
+      filename: undefined,
+      identifierName: 'ast'
+    },
+    range: [ 121, 124 ],
+    name: 'ast'
+  },
+  generator: false,
+  async: false,
+  expression: false,
+  params: [],
+  body: Node {
+    type: 'BlockStatement',
+    start: 127,
+    end: 129,
+    loc: SourceLocation {
+      start: [Position],
+      end: [Position],
+      filename: undefined,
+      identifierName: undefined
+    },
+    range: [ 127, 129 ],
+    body: []
+  },
+  leadingComments: [
+    {
+      type: 'CommentBlock',
+      value: '*\n' +
+        ' * @description 抽象语法树函数\n' +
+        ' *\n' +
+        ' * @param {string} js string\n' +
+        ' * @param {boolean}\n' +
+        ' * @return {Object} json 树\n' +
+        ' ',
+      start: 1,
+      end: 111,
+      loc: [SourceLocation]
+    }
+  ]
+}
+</code></pre>
 <h2>缺点</h2>
 <ul>
 <li>
@@ -465,7 +655,7 @@ https://&lt;github账号名>.github.io/&lt;仓库名>/
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Jul 22 2023 16:38:44 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Aug 05 2023 01:05:23 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
