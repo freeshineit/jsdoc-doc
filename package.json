@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "scripts": {
     "docs": "rimraf docs && jsdoc -c ./jsdoc.json -r README.md -d docs",
-    "ast": "node ./test/ast.js"
+    "ast": "node ./test/ast.js",
+    "declaration": "npx tsc index.jsx --declaration true  --declarationDir typings --allowJs true --emitDeclarationOnly true"
   },
   "devDependencies": {
     "docdash": "^2.0.1",
     "jsdoc": "^4.0.2",
-    "rimraf": "^5.0.1"
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
   }
 }
