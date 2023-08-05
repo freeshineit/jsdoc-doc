@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 /**
  * 列表项操作回调
@@ -39,7 +39,9 @@ export const ListItem = ({ action, title, setClicked }) => {
  * @returns
  */
 const List = ({ create, read, update, destroy }) => {
-  const [clicked, setClicked] = useState("");
+  /** @type {[string, React.Dispatch<React.SetStateAction<string>>]} */
+  const [clicked, setClicked] = useState('');
+
   return (
     <div>
       <hl>The last clicked button is {clicked}</hl>

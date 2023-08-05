@@ -194,6 +194,113 @@ function sum(a, b) {
 const ele = document.getElementById("root")
 ```
 
+  基本数据类型：{number} {string} {boolean} {undefined} {symbol}
+
+  ```js
+    /** @type {number} */
+    let a;
+  ```
+
+  复杂数据类型：{Object} {Array} {Function} {RegExp} {Date} {Error}
+
+  ```js
+    /** @type {Object} */
+    const obj = {};
+    
+    /** @type {Array} */
+    const arr = []; // 默认 Array<any>
+  ```
+
+  自定义类型：{ClassName}
+
+  ```js
+    // class name
+    class AClass {
+      getA() {}
+    }
+
+    /** @type {AClass} */
+    let ac;
+    ac.getA();
+  ```
+
+  任意类型：{*}
+
+  ```js
+  let anyType 
+  
+  ```
+
+  可选类型：{number=}
+
+  ```js
+    /**
+      * @type {Person}
+      */
+    let person = {
+      name: '张三',
+      age: 18,  // 当设置age时会提示 age?  说明age key 是可选的, 在使用时要注意判断是否存在
+    };
+  ```
+
+  对象类型：{{name: string, age: number}}
+
+  ```js
+    /**
+    * @type {{name: string, age: number}}
+    */
+    var person = {
+      name: '张三',
+      age: 18
+    }
+  ```
+
+  数组类型：{Array<number>}
+  ```js
+  /** @type {Array<number>} */
+  const arrNum = [];
+  ```
+
+
+  函数类型：{function(number, string): boolean}
+
+  ```js
+    /** @type {function(number, number): number} */
+    const fn = (a, b) => a + b; //
+  ```
+
+  回调函数类型：{function(number, string, function(boolean, string))}
+
+  可选参数类型：{function(number, string=): boolean}
+
+  ```js
+    /** @type {function(number, number): number} */
+    const fn = (a, b =10) => a + b; //
+  ```
+
+  可变参数类型：{function(...number): boolean}
+
+  ```js
+  /** @type {function(...number):number} */ // (...number) => number
+  const fn1 = (a, b, c, d, e) => a + b + c + d + e; //
+  ```
+
+  可选可变参数类型：{function(number, ...string=): boolean}
+
+  任意类型：{function(...[*]): *}
+
+  任意类型：{function(...?): ?}
+
+  其他库提供是自定义类型 `lib.dom.d.ts`, `react`, `vue`
+
+  ```jsx
+   const A = () => {
+    /** @type {[string, React.Dispatch<React.SetStateAction<string>>]} */
+    const [clicked, setClicked] = useState(''); // 如果使用ts可以改成 `const [clicked, setClicked] = useState<string>('')`
+    return <div></div>
+   }
+  ```
+
 ### `@typedef`
 
 `@typedef` 标签在描述自定义类型，特别是如果你要反复引用它们的时候。
@@ -207,7 +314,7 @@ const ele = document.getElementById("root")
 /**
  * @typedef {Object} Person person 对象
  * @property {string} name 姓名
- * @property {number} age 年龄
+ * @property {number=} age 年龄
  */
 ```
 
@@ -340,11 +447,43 @@ class A {
 
 ### `@static`
 
-@static 标记表示符号包含在父项中，可以在不实例化父项的情况下访问。
+@static 标记表示符号包含在父项中，可以在不实例化父项的情况下访问。记录一个静态成员
+
+```js
+
+class A {
+
+  /**
+   * @static
+   */ 
+  static getA () {}
+}
+
+AStatic.getA();
+
+```
 
 ### `@override`
 
-`@override` 标签指明一个标识符覆盖其父类同名的标识符。
+`@override` 标签指明一个标识符覆盖其父类同名的标识符。重写父类方法
+
+```js
+class Base {
+  getName () {
+    throw new Error ("get name 为实现")
+  }
+}
+
+class B extends Base {
+  /**
+   * @override
+   */ 
+  getName () {
+    console.log("override")
+  }
+}
+
+```
 
 ### `@example`
 
@@ -362,21 +501,68 @@ function v(mse) {}
 
 `@public` 标签标记标识符为公开的。
 
+```js
+class Base {
+  /**
+   * @public
+   */ 
+  getName () {}
+}
+```
+
 ### `@protected`
 
 `@protected` 标记将符号标记为受保护。通常，此标记表示符号仅在当前模块中可用或应仅使用。
 
+```js
+class Base {
+  /**
+   * @protected
+   */ 
+  getName () {}
+}
+```
+
 ### `@private`
 
-`@private` 标记将符号标记为 private, 标记不被子成员继承。默认文档输出中不会显示私有成员。除非使用 `-p/--private` 命令行选项运行
+`@private` 标记将符号标记为 private, 标记不被子成员继承。默认文档输出中不会显示私有成员。除非使用 `-p/--private` 命令行选项运行. 默认不输处到文档还有下划线开头的变量和方法。
+
+```js
+class Base {
+  /**
+   * @private
+   */ 
+  getName () {}
+}
+```
 
 ### `@readonly`
 
 `@readonly` 标记一个标识符为只读。
 
+```js
+class Base {
+  /**
+   * @readonly
+   */ 
+  name = "name"
+}
+```
+
 ### `@throws`
 
 `@throws` 标记记录函数可能引发的错误。可以在一个 JSDoc 注释中多次包含 `@throws` 标记。
+
+```js
+class Base {
+  /**
+   * @throws 子类不实现该方法，调用该方法会抛出错误
+   */ 
+  getName () {
+    throw new Error ("get name 为实现")
+  }
+}
+```
 
 ### `@ignore`
 
@@ -442,10 +628,18 @@ function a () {}
 
 `@async` 标记表示函数是异步的，这意味着它是使用语法 `async function foo () {}` 声明的。
 
-
 ### `@function`
 
 `@function` 标签标记为一个函数
+
+```js
+function getFn (x) {
+  return  () => { return x}
+}
+
+/** @function */
+const fn2 = getFn(100)
+```
 
 ### `@constant`
 
@@ -563,9 +757,9 @@ npx jsdoc -c jsdoc.json
   
 ## [插件](https://jsdoc.app/about-plugins.html)
 
-- [plugins/shout]()
+- [plugins/shout]
 
-- [plugins/markdown] 自带
+- [plugins/markdown]
 
 ## 部署
 
@@ -663,6 +857,15 @@ Node {
     }
   ]
 }
+```
+
+
+## 生成声明文件（.d.ts）
+
+```bash
+yarn add typescript -D
+
+npx tsc index.jsx --declaration true  --declarationDir typings --allowJs true --emitDeclarationOnly true
 ```
 
 ## 缺点
