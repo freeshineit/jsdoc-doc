@@ -9,7 +9,7 @@
  */
 class Logger {
   /** @type {LoggerLevel} */
-  static LOGGER_LEVEL = "DEBUG";
+  static LOGGER_LEVEL = 'DEBUG';
   /** @type {boolean} */
   static HIDE_TAG = false;
 

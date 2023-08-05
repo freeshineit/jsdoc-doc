@@ -4,7 +4,9 @@
   "scripts": {
     "docs": "rimraf docs && jsdoc -c ./jsdoc.json -r README.md -d docs",
     "ast": "node ./test/ast.js",
-    "declaration": "npx tsc index.jsx --declaration true  --declarationDir typings --allowJs true --emitDeclarationOnly true"
+    "declaration": "npx tsc index.jsx --declaration true  --declarationDir typings --allowJs true --emitDeclarationOnly true",
+    "lint": "npx eslint .",
+    "fmt": "prettier --write \"**/*.{js,cjs}\""
   },
   "devDependencies": {
     "docdash": "^2.0.1",

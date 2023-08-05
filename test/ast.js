@@ -1,4 +1,4 @@
-const { AstBuilder } = require("jsdoc/lib/jsdoc/src/astbuilder");
+const { AstBuilder } = require('jsdoc/lib/jsdoc/src/astbuilder');
 
 const builder = new AstBuilder();
 
@@ -14,8 +14,8 @@ const node = builder.build(
 function ast() {}
 `,
   {
-    tokens: true
-  }
+    tokens: true,
+  },
 );
 
 console.log(node.program.body[0]);

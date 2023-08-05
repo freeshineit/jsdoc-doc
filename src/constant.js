@@ -1,7 +1,7 @@
 /**
  * @type {string}
  */
-export const MYSQL_HOST = "0.0.0.0";
+export const MYSQL_HOST = '0.0.0.0';
 /** @type {number} */
 export const MYSQL_PORT = 3306;
 
@@ -16,11 +16,11 @@ export const MYSQL_PORT = 3306;
 const config = {
   defaults: {
     players: 1,
-    level: "beginner",
+    level: 'beginner',
     treasure: {
-      gold: 0
-    }
-  }
+      gold: 0,
+    },
+  },
 };
 
 /**
