@@ -248,6 +248,76 @@ function sum(a, b) {
 <pre class="prettyprint source lang-js"><code>/** @type {HTMLElement} */
 const ele = document.getElementById(&quot;root&quot;)
 </code></pre>
+<p>基本数据类型：{number} {string} {boolean} {undefined} {symbol}</p>
+<pre class="prettyprint source lang-js"><code>  /** @type {number} */
+  let a;
+</code></pre>
+<p>复杂数据类型：{Object} {Array} {Function} {RegExp} {Date} {Error}</p>
+<pre class="prettyprint source lang-js"><code>  /** @type {Object} */
+  const obj = {};
+  
+  /** @type {Array} */
+  const arr = []; // 默认 Array&lt;any>
+</code></pre>
+<p>自定义类型：{ClassName}</p>
+<pre class="prettyprint source lang-js"><code>  // class name
+  class AClass {
+    getA() {}
+  }
+
+  /** @type {AClass} */
+  let ac;
+  ac.getA();
+</code></pre>
+<p>任意类型：{*}</p>
+<pre class="prettyprint source lang-js"><code>let anyType 
+
+</code></pre>
+<p>可选类型：{number=}</p>
+<pre class="prettyprint source lang-js"><code>  /**
+    * @type {Person}
+    */
+  let person = {
+    name: '张三',
+    age: 18,  // 当设置age时会提示 age?  说明age key 是可选的, 在使用时要注意判断是否存在
+  };
+</code></pre>
+<p>对象类型：{{name: string, age: number}}</p>
+<pre class="prettyprint source lang-js"><code>  /**
+  * @type {{name: string, age: number}}
+  */
+  var person = {
+    name: '张三',
+    age: 18
+  }
+</code></pre>
+<p>数组类型：{Array<number>}</p>
+<pre class="prettyprint source lang-js"><code>/** @type {Array&lt;number>} */
+const arrNum = [];
+</code></pre>
+<p>函数类型：{function(number, string): boolean}</p>
+<pre class="prettyprint source lang-js"><code>  /** @type {function(number, number): number} */
+  const fn = (a, b) => a + b; //
+</code></pre>
+<p>回调函数类型：{function(number, string, function(boolean, string))}</p>
+<p>可选参数类型：{function(number, string=): boolean}</p>
+<pre class="prettyprint source lang-js"><code>  /** @type {function(number, number): number} */
+  const fn = (a, b =10) => a + b; //
+</code></pre>
+<p>可变参数类型：{function(...number): boolean}</p>
+<pre class="prettyprint source lang-js"><code>/** @type {function(...number):number} */ // (...number) => number
+const fn1 = (a, b, c, d, e) => a + b + c + d + e; //
+</code></pre>
+<p>可选可变参数类型：{function(number, ...string=): boolean}</p>
+<p>任意类型：{function(...[*]): *}</p>
+<p>任意类型：{function(...?): ?}</p>
+<p>其他库提供是自定义类型 <code>lib.dom.d.ts</code>, <code>react</code>, <code>vue</code></p>
+<pre class="prettyprint source lang-jsx"><code> const A = () => {
+  /** @type {[string, React.Dispatch&lt;React.SetStateAction&lt;string>>]} */
+  const [clicked, setClicked] = useState(''); // 如果使用ts可以改成 `const [clicked, setClicked] = useState&lt;string>('')`
+  return &lt;div>&lt;/div>
+ }
+</code></pre>
 <h3><code>@typedef</code></h3>
 <p><code>@typedef</code> 标签在描述自定义类型，特别是如果你要反复引用它们的时候。</p>
 <pre class="prettyprint source lang-js"><code>/**
@@ -258,7 +328,7 @@ const ele = document.getElementById(&quot;root&quot;)
 /**
  * @typedef {Object} Person person 对象
  * @property {string} name 姓名
- * @property {number} age 年龄
+ * @property {number=} age 年龄
  */
 </code></pre>
 <h3><code>@property</code></h3>
@@ -358,9 +428,37 @@ class A {
 }
 </code></pre>
 <h3><code>@static</code></h3>
-<p>@static 标记表示符号包含在父项中，可以在不实例化父项的情况下访问。</p>
+<p>@static 标记表示符号包含在父项中，可以在不实例化父项的情况下访问。记录一个静态成员</p>
+<pre class="prettyprint source lang-js"><code>
+class A {
+
+  /**
+   * @static
+   */ 
+  static getA () {}
+}
+
+AStatic.getA();
+
+</code></pre>
 <h3><code>@override</code></h3>
-<p><code>@override</code> 标签指明一个标识符覆盖其父类同名的标识符。</p>
+<p><code>@override</code> 标签指明一个标识符覆盖其父类同名的标识符。重写父类方法</p>
+<pre class="prettyprint source lang-js"><code>class Base {
+  getName () {
+    throw new Error (&quot;get name 为实现&quot;)
+  }
+}
+
+class B extends Base {
+  /**
+   * @override
+   */ 
+  getName () {
+    console.log(&quot;override&quot;)
+  }
+}
+
+</code></pre>
 <h3><code>@example</code></h3>
 <p><code>@example</code> 标签后面的文本将显示为突出显示的代码块。</p>
 <pre class="prettyprint source lang-js"><code>/**
@@ -371,14 +469,51 @@ function v(mse) {}
 </code></pre>
 <h3><code>@public</code></h3>
 <p><code>@public</code> 标签标记标识符为公开的。</p>
+<pre class="prettyprint source lang-js"><code>class Base {
+  /**
+   * @public
+   */ 
+  getName () {}
+}
+</code></pre>
 <h3><code>@protected</code></h3>
 <p><code>@protected</code> 标记将符号标记为受保护。通常，此标记表示符号仅在当前模块中可用或应仅使用。</p>
+<pre class="prettyprint source lang-js"><code>class Base {
+  /**
+   * @protected
+   */ 
+  getName () {}
+}
+</code></pre>
 <h3><code>@private</code></h3>
-<p><code>@private</code> 标记将符号标记为 private, 标记不被子成员继承。默认文档输出中不会显示私有成员。除非使用 <code>-p/--private</code> 命令行选项运行</p>
+<p><code>@private</code> 标记将符号标记为 private, 标记不被子成员继承。默认文档输出中不会显示私有成员。除非使用 <code>-p/--private</code> 命令行选项运行. 默认不输处到文档还有下划线开头的变量和方法。</p>
+<pre class="prettyprint source lang-js"><code>class Base {
+  /**
+   * @private
+   */ 
+  getName () {}
+}
+</code></pre>
 <h3><code>@readonly</code></h3>
 <p><code>@readonly</code> 标记一个标识符为只读。</p>
+<pre class="prettyprint source lang-js"><code>class Base {
+  /**
+   * @readonly
+   */ 
+  name = &quot;name&quot;
+}
+</code></pre>
 <h3><code>@throws</code></h3>
 <p><code>@throws</code> 标记记录函数可能引发的错误。可以在一个 JSDoc 注释中多次包含 <code>@throws</code> 标记。</p>
+<pre class="prettyprint source lang-js"><code>class Base {
+  /**
+   * @throws 子类不实现该方法，调用该方法会抛出错误
+   */ 
+  getName () {
+    throw new Error (&quot;get name 为实现&quot;)
+  }
+}
+</code></pre>
 <h3><code>@ignore</code></h3>
 <p><code>@ignore</code> 标签表示在代码中的注释不应该出现在文档中，注释会被直接忽略。这个标签优先于所有其他标签.</p>
 <h3><code>@interface</code></h3>
@@ -425,6 +560,13 @@ function a () {}
 <p><code>@async</code> 标记表示函数是异步的，这意味着它是使用语法 <code>async function foo () {}</code> 声明的。</p>
 <h3><code>@function</code></h3>
 <p><code>@function</code> 标签标记为一个函数</p>
+<pre class="prettyprint source lang-js"><code>function getFn (x) {
+  return  () => { return x}
+}
+
+/** @function */
+const fn2 = getFn(100)
+</code></pre>
 <h3><code>@constant</code></h3>
 <p><code>@constant</code> 标记用于将文档标记为属于常量的符号。</p>
 <h3><code>@version</code></h3>
@@ -521,10 +663,10 @@ npx jsdoc -c jsdoc.json
 <h2><a href="https://jsdoc.app/about-plugins.html">插件</a></h2>
 <ul>
 <li>
-<p><a href="">plugins/shout</a></p>
+<p>[plugins/shout]</p>
 </li>
 <li>
-<p>[plugins/markdown] 自带</p>
+<p>[plugins/markdown]</p>
 </li>
 </ul>
 <h2>部署</h2>
@@ -615,6 +757,11 @@ function ast () {}
   ]
 }
 </code></pre>
+<h2>生成声明文件（.d.ts）</h2>
+<pre class="prettyprint source lang-bash"><code>yarn add typescript -D
+
+npx tsc index.jsx --declaration true  --declarationDir typings --allowJs true --emitDeclarationOnly true
+</code></pre>
 <h2>缺点</h2>
 <ul>
 <li>
@@ -655,7 +802,7 @@ function ast () {}
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Aug 05 2023 01:05:23 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Aug 05 2023 13:43:19 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

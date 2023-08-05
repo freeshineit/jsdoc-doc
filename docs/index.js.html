@@ -47,215 +47,84 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @class Logger
- * @classdesc Logger class description
- * @since 0.1.0
- * @example
- * Logger.v("this is console log")
- *
- * Logger.e("this is console error")
- */
-class Logger {
-  /** @type {LoggerLevel} */
-  static LOGGER_LEVEL = "DEBUG";
-  /** @type {boolean} */
-  static HIDE_TAG = false;
+            <pre class="prettyprint source linenums"><code>(function () {
+  /** @type {HTMLCanvasElement} */
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext('2d');
 
-  /**
-   * @description Static method used to print debug logs
-   * @static
-   *
-   * @example
-   * Logger.d("error message")
-   *
-   * @param {...Array&lt;any>} args debug messages
-   * @returns {void}
-   */
-  static d(...args) {
-    console.debug(...args);
+  /** @type {undefined} */
+  let a;
+
+  /** @type {Object} */
+  const obj = {};
+
+  /** @type {Array} */
+  const arr = [];
+
+  /** @type {Array&lt;number>} */
+  const arrNum = [];
+
+  // class name
+  class AClass {
+    getA() {}
   }
 
-  /**
-   * @description Static method used to print info logs
-   * @static
-   *
-   * @example
-   * Logger.i("info message")
-   *
-   * @param {...Array&lt;any>} args info messages
-   * @returns {void}
-   */
-  static i(...args) {
-    console.info(...args);
-  }
+  /** @type {AClass} */
+  let ac;
+  ac.getA();
+
+  /** @type {*} */
+  let anyType = 100;
+  anyType = 'string';
 
   /**
-   * @description Static method used to print verbose logs
-   * @static
-   *
-   * @example
-   * Logger.v("verbose message")
-   *
-   * @param {...Array&lt;any>} args verbose messages
-   * @returns {void}
+   * @typedef {Object} Person person 对象
+   * @property {string} name 姓名
+   * @property {number=} age 年龄
    */
-  static v(...args) {
-    console.log(...args);
-  }
 
   /**
-   * @description Static method used to print warn logs
-   * @static
-   *
-   * @example
-   * Logger.w("verbose message")
-   *
-   * @param {...Array&lt;any>} args warn messages
-   * @returns {void}
+   * @type {Person}
    */
-  static w(...args) {
-    console.warn(...args);
-  }
+  const person = {
+    name: '张三',
+    age: 18,
+  };
 
-  /**
-   * @description Static method used to print error logs
-   * @static
-   *
-   * @example
-   * Logger.e("verbose message")
-   *
-   * @param {...Array&lt;any>} args error messages
-   * @returns {void}
-   */
-  static e(...args) {
-    console.error(...args);
-  }
-}
+  // 函数类型
+  /** @type {function(number, number):number} */ // (number, number) => number
+  const fn = (a, b = 10) => a + b; //
 
-/**
- * @class Events
- * @classdesc Events class description
- * @since 0.1.0
- * @example
- *
- * const event = new Event()
- * event.on("type", () => {})
- *
- */
-class Events {
-  /**
-   * @type {Object&lt;string, Array&lt;EventsListener>>}
-   * @member
-   */
-  listeners = {};
+  /** @type {function(...number):number} */ // (...number) => number
+  const fn1 = (a, b, c, d, e) => a + b + c + d + e; //
 
-  /**
-   * @constructor
-   */
-  constructor() {
+  // @static
+  class AStatic {
     /**
-     * this is function
-     * @function
-     *
-     * @param {string} str gg param
-     * @returns {void}
-     * @example
-     * event.testFn("click", () => {})
+     * @static
      */
-    this.testFn = (str) => {};
+    static getA() {}
   }
+  AStatic.getA();
 
-  /**
-   * @description events add listener
-   * @public
-   *
-   * @param {string} type events type
-   * @param {EventsListener} fn events listener
-   * @returns {void}
-   *
-   * @example
-   * event.on("click", () => {})
-   */
-  on(type, fn) {
-    if (this.listeners[type]) {
-      this.listeners.push(fn);
-    } else {
-      this.listeners = [fn];
+  class Base {
+    /**
+     * @throws 子类不实现该方法，调用该方法会抛出错误
+     */
+    getName() {
+      throw new Error('get name 为实现');
     }
   }
 
-  /**
-   * @description events remove listener
-   * @public
-   *
-   * @param {string} type events type
-   * @param {EventsListener=} fn events listener options
-   * @returns {void}
-   *
-   * @example
-   *
-   * event.off("click")
-   */
-  off(type, fn) {
-    if (this.listeners[type]) {
-      if (fn) {
-        const index = this.listeners[type].findIndex((item) => item === fn);
-        if (index > -1) {
-          this.listeners[type] = this.listeners[type].splice(index, 1);
-        }
-      } else {
-        this.listeners = [];
-      }
-    }
-  }
-
-  /**
-   * @deprecated events add once listener
-   * @param {string} type events type
-   * @param {EventsListener} fn
-   *
-   * @example
-   * const fn = () => { console.log("emit once") }
-   * event.once('click', fn)
-   */
-  once(type, fn) {
-    const cb = () => {
-      // 执行一次 然后移除
-      fn();
-      this.off(cb);
+  function getFn(x) {
+    return () => {
+      return x;
     };
-    this.on(type, cb);
   }
 
-  /**
-   * @description events emit listener
-   * @param {string} type events type
-   * @returns {void}
-   * @deprecated 下一个大版本将会移除
-   * @example
-   *
-   * event.emit('click')
-   */
-  emit(type) {
-    if (this.listeners[type]) {
-      this.listeners[type].forEach((fn) => {
-        fn();
-      });
-    }
-  }
-}
-
-// /**
-//  * See {@link MyClass} and [MyClass's foo property]{@link MyClass#foo}.
-//  * Also, check out {@link http://www.google.com|Google} and
-//  * {@link https://github.com GitHub}.
-//  */
-// function myFunction() {}
-
-export { Events };
-
-export default Logger;
+  /** @function */
+  const fn2 = getFn(100);
+})();
 </code></pre>
         </article>
     </section>
@@ -270,7 +139,7 @@ export default Logger;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Aug 05 2023 01:05:23 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Aug 05 2023 13:43:19 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
